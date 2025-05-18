@@ -1,27 +1,59 @@
-<div class="game-container">
-  <h1>Legendary Egg Clicker</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Egg Clicker Game</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f0f8ff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      user-select: none;
+      flex-direction: column;
+    }
 
-  <div id="story-box" class="story-box">
-    Welcome! Click the egg to start your journey.
-  </div>
+    #egg {
+      width: 150px;
+      height: 200px;
+      background: url('https://i.imgur.com/2u3SlOQ.png') no-repeat center center;
+      background-size: contain;
+      cursor: pointer;
+      box-shadow: 0 0 15px #f7c873;
+      transition: transform 0.2s ease;
+    }
 
-  <div id="egg-container">
-    <div id="egg" class="egg egg-basic"></div>
-  </div>
+    #egg:active {
+      transform: scale(0.9);
+      box-shadow: 0 0 30px #ffdd55;
+    }
 
-  <div id="level-info" class="level-info">Level: 1</div>
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
 
-  <div id="leaderboard-container">
-    <h2>Leaderboard</h2>
-    <ol id="leaderboard"></ol>
-  </div>
+  <h1>Click the Egg!</h1>
+  <div id="egg" title="Click me!"></div>
 
-  <div id="name-entry" class="name-entry">
-    <input type="text" id="player-name" placeholder="Enter your name" maxlength="10" />
-    <button id="save-score">Save Score</button>
-  </div>
-</div>
+  <!-- Sound element -->
+  <audio id="click-sound" src="https://www.soundjay.com/button/sounds/button-16.mp3" preload="auto"></audio>
 
-<audio id="click-sound" src="https://freesound.org/data/previews/256/256113_3263906-lq.mp3"></audio>
-<audio id="break-sound" src="https://freesound.org/data/previews/198/198841_2859976-lq.mp3"></audio>
-<audio id="levelup-sound" src="https://freesound.org/data/previews/331/331912_3248244-lq.mp3"></audio>
+  <script>
+    const egg = document.getElementById('egg');
+    const clickSound = document.getElementById('click-sound');
+
+    egg.addEventListener('click', () => {
+      clickSound.currentTime = 0;  // rewind sound
+      clickSound.play();
+      console.log('Egg clicked!');
+    });
+  </script>
+
+</body>
+</html>
